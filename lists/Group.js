@@ -11,27 +11,17 @@ const {
   } = require('@keystonejs/fields');
   module.exports = {
     fields: {
-      name: { type: Text },
-      username: {
-        type: Text,
-        isUnique: true,
-      },
-      password: {
-        type: Password,
-      },
-      customers: {
-        type: Relationship,
-        ref: "Customer.users",
-        many: true
-      },
-      type: {
-        type: Text
-      },
-      groups: {
-        type: Relationship,
-        ref: "Group.users",
-        many: true
-      }
+        name: { type: Text },
+        users: {
+            type: Relationship,
+            ref: "User.groups",
+            many: true
+        },
+        customers: {
+            type: Relationship, 
+            ref: "Customer.groups",
+            many: true
+        }
     },
     // List-level access controls
     access: {
