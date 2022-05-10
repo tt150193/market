@@ -1,8 +1,19 @@
 <html>
     <head>
-
+        <%- include("head.ejs"); %>
     </head>
     <body>
-        <h1>Hello World</h1>
+        <div class="container">
+            <h1>SALE</h1>
+            <div class="row" id="app">
+                <div class="col-3">
+                    <%- include("sale/sidebar.ejs"); %>
+                </div>
+                <div class="col-9">
+                    <%- include("sale/main.ejs"); %>
+                </div>
+            </div>
+        </div>
+        <script src="/js/sale.js"></script>
     </body>
 </html>

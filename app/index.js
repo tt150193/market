@@ -13,7 +13,10 @@ function middle(keystone, dev, distDir){
 
   // TOOL
   app.get("/", (req, res)=>{
-      res.render("index");
+    res.render("index");
+  })
+  app.get("/master", (req, res)=>{
+    res.render("master");
   })
   return app;
 }
