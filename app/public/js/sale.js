@@ -88,6 +88,9 @@ var app = new Vue({
         },
         leads(){
             return this.$store.state.leads;
+        },
+        page(){
+            return this.$store.state.hashpage;
         }
     },
     methods: {

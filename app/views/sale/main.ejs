@@ -1,6 +1,14 @@
 <div class="border border-primary">
-    <div>
-        Tổng khách: {{ customers.length }}<br>
-        Tổng tiềm năng: {{ leads.length }}
+    <div v-if="page == 'customer'">
+        <%- include("s_customer.ejs"); %>
+    </div>
+    <div v-if="page == 'add'">
+        <%- include("s_add.ejs"); %>
+    </div>
+    <div v-if="page == 'lead'">
+        <%- include("s_lead.ejs"); %>
+    </div>
+    <div v-if="page == 'common'">
+        <%- include("s_common.ejs"); %>
     </div>
 </div>
