@@ -3,8 +3,16 @@
         <%- include("head.ejs"); %>
     </head>
     <body>
-        <div class="container">
-            <h1>MASTER</h1>
+        <div class="container-fluide p-2">
+            <%- include("nav.ejs"); %>
+            <div class="row" id="app">
+                <div class="col-3">
+                    <%- include("master/sidebar.ejs"); %>
+                </div>
+                <div class="col-9">
+                    <%- include("master/main.ejs"); %>
+                </div>
+            </div>
         </div>
     </body>
 </html>

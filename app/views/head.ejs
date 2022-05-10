@@ -9,13 +9,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script src="/js/graphql.js"></script>
 <script>
-    if(localStorage.getItem("user") == undefined){
+    var user = localStorage.getItem("user");
+    if(user == undefined){
         if(location.pathname == "/login"){
 
         } else {
             location.href = "/login";
         }
     }
+    user = JSON.parse(user);
     var SIGNOUT = `
                     mutation {
                         unauthenticate: unauthenticateUser {
