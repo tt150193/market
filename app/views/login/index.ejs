@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <%- include("../head.ejs"); %>
+    </head>
+    <body>
+        <div class="container text-center" id="appLogin">
+            <h2>LOGIN</h2>
+            <div class="">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="material-icons">person</i></span>
+                    </div>
+                    <input v-model="username" v-on:keyup.enter="clickLogin()" type="text" class="form-control" placeholder="Tên đăng nhập">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="material-icons">lock</i></span>
+                    </div>
+                    <input v-model="password" v-on:keyup.enter="clickLogin()" type="password" class="form-control" placeholder="Mật khẩu">
+                </div>
+                <div>
+                    <button class="btn btn-primary" @click="clickLogin()">Đăng nhập</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            var SIGNIN = `
+                mutation signin($identity: String, $secret: String) {
+                    authenticate: authenticateUserWithPassword(username: $identity, password: $secret) {
+                        item {
+                            id
+                            name
+                            username
+                        }
+                    }
+                }
+                `
+            var appLogin = new Vue({
+                el: "#appLogin",
+                data: {
+                    username: "",
+                    password: ""
+                },
+                methods: {
+                    clickLogin(){
+                        if(this.username.length * this.password.length == 0){
+                            alert("Vui lòng không để trống");
+                            return;
+                        }
+                        var that = this;
+                        graphql(SIGNIN, {
+                            identity: this.username,
+                            secret: this.password
+                        }).then(a => {
+                            console.log(a);
+                            if(!a.data.authenticate){
+                                alert("Tên đăng nhập hoặc mật khẩu bị sai", "ERROR");
+                            } else {
+                                localStorage.setItem("user", JSON.stringify(a.data.authenticate.item));
+                                alert('Đã đăng nhập - Chuyển về trang chủ');
+                                location.href = "/";
+                            }
+                        });
+
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

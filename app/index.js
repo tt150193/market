@@ -18,6 +18,9 @@ function middle(keystone, dev, distDir){
   app.get("/master", (req, res)=>{
     res.render("master");
   })
+  app.get("/login", (req, res)=>{
+    res.render("login/index");
+  });
   return app;
 }
 
