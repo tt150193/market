@@ -12,6 +12,8 @@ function middle(keystone, dev, distDir){
   app.use(express.urlencoded({ extended: true }));
 
   // TOOL
+  app.use("/kiot", require("./route/kiot")(keystone));
+
   app.get("/", (req, res)=>{
       res.render("index");
   })
